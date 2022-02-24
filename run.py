@@ -21,8 +21,17 @@ def player_input(board, player):
     """
     Take player input and add their symbol to the board
     """
-    inp = int(input(f"{player} please chose a number between 1-9 to place your symbol: \n"))
-    board[inp-1] = current_player
+    while True:
+        try:
+            inp = int(input(f"{player} please chose a number between 1-9 to place your symbol: \n"))
+            if inp >= 1 and inp <= 9 and board[inp-1] == "-":
+                board[inp-1] = current_player
+                break
+            else:
+                print(f"{inp} is not a valid number, try again.")
+        except ValueError as e:
+            print(f"{e} is not valid, try again.")
+
 
 #Check for win or tie 
 def win_horizontally(board, player):
@@ -56,7 +65,6 @@ def win_diagonally(board, player):
     elif board[2] == board[4] == board[6] and board[2] != "-":
         print(f"Congratz {player}, You won the game!")
 
-
 def check_for_win(board, player):
     win_horizontally(board,player)
     win_vertically(board, player)
@@ -67,12 +75,14 @@ def check_for_win(board, player):
 #Run game
 player_one = input("Player one, please enter your name: \n")
 player_two = input("Player two, please enter your name: \n")
-while run_game:
-    player_input(BOARD, player_one)
-    print_board(BOARD)
-    check_for_win(BOARD, player_one)
-    player_input(BOARD, player_two)
-    print_board(BOARD)
-    check_for_win(BOARD, player_two)
 
+def main():
+    while run_game:
+        player_input(BOARD, player_one)
+        print_board(BOARD)
+        check_for_win(BOARD, player_one)
+        player_input(BOARD, player_two)
+        print_board(BOARD)
+        check_for_win(BOARD, player_two)
+main()
 print("XD")
