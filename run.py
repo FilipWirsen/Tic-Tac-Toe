@@ -14,7 +14,7 @@ def print_board(board):
     """
     print(board[0] + "|" + board[1] + "|" + board[2])
     print(board[3] + "|" + board[4] + "|" + board[5])
-    print(board[6] + "|" + board[7] + "|" + board[8])
+    print(board[6] + "|" + board[7] + "|" + board[8] +"\n")
 
 #Player input 
 def player_input(board, player):
@@ -26,11 +26,14 @@ def player_input(board, player):
             inp = int(input(f"{player} please chose a number between 1-9 to place your symbol: \n"))
             if inp >= 1 and inp <= 9 and board[inp-1] == "-":
                 board[inp-1] = current_player
+                print_board(BOARD)
+                check_for_win_or_tie(board, player)
+                switch_player()
                 break
             else:
-                print(f"{inp} is not a valid number, try again.")
+                print(f"Slot number:{inp} is already taken, try again. \n")
         except ValueError as e:
-            print(f"{e} is not valid, try again.")
+            print(f"You need to enter a number, {e} is not a number \n")
 
 
 #Check for win or tie 
@@ -38,51 +41,92 @@ def win_horizontally(board, player):
     """
     Check for win horizontally
     """
+    global run_game
     if board[0] == board[1] == board[2] and board[0] != "-":
-        print(f"Congratz {player}, You won the game!")
+        print(f"Congratz {player}, You won the game! \n")
+        run_game = False
     elif board[3] == board[4] == board[5] and board[3] != "-":
-        print(f"Congratz {player}, You won the game!")
+        print(f"Congratz {player}, You won the game! \n")
+        run_game = False
     elif board[6] == board[7] == board[8] and board[6] != "-":
-        print(f"Congratz {player}, You won the game!")
+        print(f"Congratz {player}, You won the game! \n")
+        run_game = False
     
 def win_vertically(board, player):
     """
     Check fo win vertically
     """
+    global run_game
     if board[0] == board[3] == board[6] and board[0] != "-":
-        print(f"Congratz {player}, You won the game!")
+        print(f"Congratz {player}, You won the game! \n")
+        run_game = False
     elif board[1] == board[4] == board[7] and board[1] != "-":
-        print(f"Congratz {player}, You won the game!")
-    elif board[2] == board[5] == board[8] and board[3] != "-":
-        print(f"Congratz {player}, You won the game!")
+        print(f"Congratz {player}, You won the game! \n")
+        run_game = False
+    elif board[2] == board[5] == board[8] and board[2] != "-":
+        print(f"Congratz {player}, You won the game! \n")
+        run_game = False
 
 def win_diagonally(board, player):
     """
     Check for win diagonally
     """
+    global run_game
     if board[0] == board[4] == board[8] and board[0] != "-":
-        print(f"Congratz {player}, You won the game!")
+        print(f"Congratz {player}, You won the game! \n")
+        run_game = False
     elif board[2] == board[4] == board[6] and board[2] != "-":
-        print(f"Congratz {player}, You won the game!")
+        print(f"Congratz {player}, You won the game! \n ")
+        run_game = False
 
-def check_for_win(board, player):
+def check_tie(board):
+    """
+    Checks if game is tied
+    """
+    global run_game
+    if "-" not in board:
+        print("It is a tie!\n")
+        run_game = False
+
+
+def check_for_win_or_tie(board, player):
+    """
+    Runs functions to check if a player has won or tied the game
+    """
     win_horizontally(board,player)
     win_vertically(board, player)
     win_diagonally(board, player)
+    check_tie(BOARD)
             
 #Switch player
+def switch_player():
+    """
+    Switches  player 
+    """
+    global current_player
+    if current_player == "X":
+        current_player = "O"
+    elif current_player == "O":
+        current_player = "X"
+    
 
 #Run game
 player_one = input("Player one, please enter your name: \n")
 player_two = input("Player two, please enter your name: \n")
 
-def main():
-    while run_game:
-        player_input(BOARD, player_one)
-        print_board(BOARD)
-        check_for_win(BOARD, player_one)
+
+#def main():
+ #   while run_game:
+  #      player_input(BOARD, player_one)
+   #     print_board(BOARD)
+    #    check_for_win_or_tie(BOARD, player_one)
+     #   switch_player()
+      #  player_input(BOARD, player_two)
+       # print_board(BOARD)
+        #check_for_win_or_tie(BOARD, player_two)
+        #switch_player()
+#main()
+while run_game:
+    player_input(BOARD, player_one)
+    if run_game == True:
         player_input(BOARD, player_two)
-        print_board(BOARD)
-        check_for_win(BOARD, player_two)
-main()
-print("XD")
