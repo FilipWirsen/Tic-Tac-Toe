@@ -1,5 +1,10 @@
 # Create board
 
+REFERENCE_BOARD = ["1", "2", "3",
+                    "4", "5", "6",
+                    "7", "8", "9"]
+
+
 BOARD = ["-", "-", "-",
         "-", "-", "-",
         "-", "-", "-"]
@@ -110,23 +115,31 @@ def switch_player():
         current_player = "X"
     
 
-#Run game
-player_one = input("Player one, please enter your name: \n")
-player_two = input("Player two, please enter your name: \n")
 
 
-#def main():
- #   while run_game:
-  #      player_input(BOARD, player_one)
-   #     print_board(BOARD)
-    #    check_for_win_or_tie(BOARD, player_one)
-     #   switch_player()
-      #  player_input(BOARD, player_two)
-       # print_board(BOARD)
-        #check_for_win_or_tie(BOARD, player_two)
-        #switch_player()
-#main()
-while run_game:
-    player_input(BOARD, player_one)
-    if run_game == True:
-        player_input(BOARD, player_two)
+def main():
+    """
+    Function that gets player names and runs the game
+    """
+    player_one = input("Player one, please enter your name: \n")
+    player_two = input("Player two, please enter your name: \n")
+    while run_game:
+        player_input(BOARD, player_one)
+        if run_game:
+            player_input(BOARD, player_two)
+
+
+#Play again
+def play_again():
+    """
+    Asks player if they want to restart the game once a player has won or tied the previous round.
+    """
+    global run_game
+    print("Would you like to play again? \n")
+    answer = input("Enter Y or N: \n")
+    if answer == "Y":
+        run_game = True
+        main()
+    
+main()
+play_again()
