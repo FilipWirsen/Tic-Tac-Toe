@@ -44,7 +44,7 @@ def player_input(player_name):
     while True:
         try:
             inp = int(input(f"{player_name} please chose a number"
-                      "between 1-9 to place your symbol: \n"))
+                      " between 1-9 to place your symbol: \n"))
             if inp >= 1 and inp <= 9 and BOARD[inp-1] == "-":
                 BOARD[inp-1] = 'X'
                 print_board()
@@ -128,12 +128,13 @@ def check_for_win_or_tie(player):
 
 def play_computer_chance(player_name):
     """
-    Switches  player
+    The computer places their symbol
     """
     global BOARD
     random_position = get_random_position()
 
     BOARD[random_position] = 'O'
+    print("The computer has placed their symbol\n")
     print_board()
     did_win_or_tie = check_for_win_or_tie('Computer')
     if did_win_or_tie:
@@ -175,12 +176,12 @@ def main():
     print("Welcome to Tic-Tac-Toe!\n")
     print("The game is played on a grid that's 3 squares by 3 squares.\n")
     print("You are X and the computers symbol is O. You and the computer"
-          "will take turns putting your symbol in empty squares.\n")
+          " will take turns putting your symbol in empty squares.\n")
     print("The first player to get 3 of their symbol in a row"
-          "(up, down, across or diagonally) is the winner.\n")
+          " (up, down, across or diagonally) is the winner.\n")
     print("If all 9 squares are full, the game is tied.\n")
     print("This is how the board looks and"
-          "what number correlates with wich square\n")
+          " what number correlates with wich square.\n")
     print(REFERENCE_BOARD[0] +
           "|" + REFERENCE_BOARD[1] +
           "|" + REFERENCE_BOARD[2])
