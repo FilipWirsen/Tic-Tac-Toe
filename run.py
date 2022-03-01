@@ -2,19 +2,17 @@ from random import randrange
 
 # Create board
 
-REFERENCE_BOARD = ["1", "2", "3",
-                    "4", "5", "6",
-                    "7", "8", "9"]
+REFERENCE_BOARD = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 
-BOARD = ["-", "-", "-",
-        "-", "-", "-",
-        "-", "-", "-"]
+BOARD = ["-", "-", "-", "-", "-", "-", "-", "-", "-"]
 
 run_game = True
 current_player = "X"
 
-#print board
+# print board
+
+
 def print_board():
     """
     Prints the board
@@ -22,7 +20,7 @@ def print_board():
     global BOARD
     print(BOARD[0] + "|" + BOARD[1] + "|" + BOARD[2])
     print(BOARD[3] + "|" + BOARD[4] + "|" + BOARD[5])
-    print(BOARD[6] + "|" + BOARD[7] + "|" + BOARD[8] +"\n")
+    print(BOARD[6] + "|" + BOARD[7] + "|" + BOARD[8] + "\n")
     return
 
 
@@ -35,7 +33,9 @@ def get_random_position():
         random_index = randrange(9)
         if BOARD[random_index] == '-':
             return random_index
-#Player input
+# Player input
+
+
 def player_input(player_name):
     """
     Take player input and add their symbol to the board
@@ -43,7 +43,8 @@ def player_input(player_name):
     global BOARD
     while True:
         try:
-            inp = int(input(f"{player_name} please chose a number between 1-9 to place your symbol: \n"))
+            inp = int(input(f"{player_name} please chose a number"
+                      "between 1-9 to place your symbol: \n"))
             if inp >= 1 and inp <= 9 and BOARD[inp-1] == "-":
                 BOARD[inp-1] = 'X'
                 print_board()
@@ -59,7 +60,9 @@ def player_input(player_name):
             print(f"You need to enter a number, {e} is not a number \n")
     return
 
-#Check for win or tie
+# Check for win or tie
+
+
 def did_win_horizontally(player):
     """
     Check for win horizontally
@@ -67,11 +70,12 @@ def did_win_horizontally(player):
     global BOARD
     did_win = False
     if ((BOARD[0] != "-" and BOARD[0] == BOARD[1] == BOARD[2]) or
-        (BOARD[3] != "-" and BOARD[3] == BOARD[4] == BOARD[5]) or
-        (BOARD[6] != "-" and BOARD[6] == BOARD[7] == BOARD[8])):
+            (BOARD[3] != "-" and BOARD[3] == BOARD[4] == BOARD[5]) or
+            (BOARD[6] != "-" and BOARD[6] == BOARD[7] == BOARD[8])):
         print(f"Congratz {player}, You won the game! \n")
-        did_win =  True
+        did_win = True
     return did_win
+
 
 def did_win_vertically(player):
     """
@@ -81,10 +85,11 @@ def did_win_vertically(player):
     did_win = False
     if ((BOARD[0] != "-" and BOARD[0] == BOARD[3] == BOARD[6]) or
         (BOARD[1] != "-" and BOARD[1] == BOARD[4] == BOARD[7]) or
-        (BOARD[2] != "-" and BOARD[2] == BOARD[5] == BOARD[8])):
+            (BOARD[2] != "-" and BOARD[2] == BOARD[5] == BOARD[8])):
         print(f"Congratz {player}, You won the game! \n")
-        did_win =  True
+        did_win = True
     return did_win
+
 
 def did_win_diagonally(player):
     """
@@ -93,10 +98,11 @@ def did_win_diagonally(player):
     global BOARD
     did_win = False
     if ((BOARD[0] != "-" and BOARD[0] == BOARD[4] == BOARD[8]) or
-        (BOARD[2] != "-" and BOARD[2] == BOARD[4] == BOARD[6])):
+            (BOARD[2] != "-" and BOARD[2] == BOARD[4] == BOARD[6])):
         print(f"Congratz {player}, You won the game! \n ")
-        did_win =  True
+        did_win = True
     return did_win
+
 
 def check_tie():
     """
@@ -116,10 +122,10 @@ def check_for_win_or_tie(player):
     """
     if did_win_horizontally(player) or did_win_vertically(player) or did_win_diagonally(player) or check_tie():
         return True
-
     return False
-            
-#Switch player
+# Switch player
+
+
 def play_computer_chance(player_name):
     """
     Switches  player
@@ -137,24 +143,27 @@ def play_computer_chance(player_name):
 
     return
 
+
 def ask_to_play_again():
     """
-    Ask user if they want to play again, if Yes, then call start_game() or else exit
+    Ask user if they want to play again,
+    if Yes, then call start_game() or else exit
     """
     print("Would you like to play again?")
     answer = input("Y/N: \n")
     if answer == "Y":
         return start_game()
-    else: 
+    else:
         print("Thanks for playing, hope to see you soon again!")
+
 
 def start_game():
     """
     Starts the game!
     """
     global BOARD
-    player_name = input("Please enter your name: \n")
-    BOARD = ["-", "-", "-", "-", "-", "-","-", "-", "-"]
+    player_name = input("Please enter your name to start the game: \n")
+    BOARD = ["-", "-", "-", "-", "-", "-", "-", "-", "-"]
     player_input(player_name)
 
 
@@ -165,13 +174,22 @@ def main():
     """
     print("Welcome to Tic-Tac-Toe!\n")
     print("The game is played on a grid that's 3 squares by 3 squares.\n")
-    print("You are X and the computers symbol is O. You and the computer will take turns putting your symbol in empty squares.\n")
-    print("The first player yo get 3 of their marks in a row (up, down, across or diagonally) is the winner.\n")
+    print("You are X and the computers symbol is O. You and the computer"
+          "will take turns putting your symbol in empty squares.\n")
+    print("The first player to get 3 of their symbol in a row"
+          "(up, down, across or diagonally) is the winner.\n")
     print("If all 9 squares are full, the game is tied.\n")
-    print("This is how the board looks and what number correlates with wich square")
-    print(REFERENCE_BOARD[0] + "|" + REFERENCE_BOARD[1] + "|" + REFERENCE_BOARD[2])
-    print(REFERENCE_BOARD[3] + "|" + REFERENCE_BOARD[4] + "|" + REFERENCE_BOARD[5])
-    print(REFERENCE_BOARD[6] + "|" + REFERENCE_BOARD[7] + "|" + REFERENCE_BOARD[8] +"\n")
+    print("This is how the board looks and"
+          "what number correlates with wich square\n")
+    print(REFERENCE_BOARD[0] +
+          "|" + REFERENCE_BOARD[1] +
+          "|" + REFERENCE_BOARD[2])
+    print(REFERENCE_BOARD[3] +
+          "|" + REFERENCE_BOARD[4] +
+          "|" + REFERENCE_BOARD[5])
+    print(REFERENCE_BOARD[6] +
+          "|" + REFERENCE_BOARD[7] +
+          "|" + REFERENCE_BOARD[8] + "\n")
     start_game()
 
 
