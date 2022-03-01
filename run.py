@@ -120,7 +120,10 @@ def check_for_win_or_tie(player):
     """
     Runs functions to check if a player has won or tied the game
     """
-    if did_win_horizontally(player) or did_win_vertically(player) or did_win_diagonally(player) or check_tie():
+    if (did_win_horizontally(player) or
+            did_win_vertically(player) or
+            did_win_diagonally(player) or
+            check_tie()):
         return True
     return False
 # Switch player
