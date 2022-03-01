@@ -1,3 +1,5 @@
+from random import randrange
+
 # Create board
 
 REFERENCE_BOARD = ["1", "2", "3",
@@ -13,133 +15,144 @@ run_game = True
 current_player = "X"
 
 #print board
-def print_board(board):
+def print_board():
     """
-    Prints the board 
+    Prints the board
     """
-    print(board[0] + "|" + board[1] + "|" + board[2])
-    print(board[3] + "|" + board[4] + "|" + board[5])
-    print(board[6] + "|" + board[7] + "|" + board[8] +"\n")
+    global BOARD
+    print(BOARD[0] + "|" + BOARD[1] + "|" + BOARD[2])
+    print(BOARD[3] + "|" + BOARD[4] + "|" + BOARD[5])
+    print(BOARD[6] + "|" + BOARD[7] + "|" + BOARD[8] +"\n")
+    return
 
-#Player input 
-def player_input(board, player):
+
+def get_random_position():
+    """
+    Make computer choose random number between 0-9
+    """
+    global BOARD
+    while True:
+        random_index = randrange(9)
+        if BOARD[random_index] == '-':
+            return random_index
+#Player input
+def player_input(player_name):
     """
     Take player input and add their symbol to the board
     """
+    global BOARD
     while True:
         try:
-            inp = int(input(f"{player} please chose a number between 1-9 to place your symbol: \n"))
-            if inp >= 1 and inp <= 9 and board[inp-1] == "-":
-                board[inp-1] = current_player
-                print_board(BOARD)
-                check_for_win_or_tie(board, player)
-                switch_player()
+            inp = int(input(f"{player_name} please chose a number between 1-9 to place your symbol: \n"))
+            if inp >= 1 and inp <= 9 and BOARD[inp-1] == "-":
+                BOARD[inp-1] = 'X'
+                print_board()
+                did_win_or_tie = check_for_win_or_tie(player_name)
+                if did_win_or_tie:
+                    return ask_to_play_again()
+                else:
+                    play_computer_chance(player_name)
                 break
             else:
                 print(f"Slot number:{inp} is already taken, try again. \n")
         except ValueError as e:
             print(f"You need to enter a number, {e} is not a number \n")
+    return
 
-
-#Check for win or tie 
-def win_horizontally(board, player):
+#Check for win or tie
+def did_win_horizontally(player):
     """
     Check for win horizontally
     """
-    global run_game
-    if board[0] == board[1] == board[2] and board[0] != "-":
+    global BOARD
+    did_win = False
+    if ((BOARD[0] != "-" and BOARD[0] == BOARD[1] == BOARD[2]) or
+        (BOARD[3] != "-" and BOARD[3] == BOARD[4] == BOARD[5]) or
+        (BOARD[6] != "-" and BOARD[6] == BOARD[7] == BOARD[8])):
         print(f"Congratz {player}, You won the game! \n")
-        run_game = False
-    elif board[3] == board[4] == board[5] and board[3] != "-":
-        print(f"Congratz {player}, You won the game! \n")
-        run_game = False
-    elif board[6] == board[7] == board[8] and board[6] != "-":
-        print(f"Congratz {player}, You won the game! \n")
-        run_game = False
-    
-def win_vertically(board, player):
+        did_win =  True
+    return did_win
+
+def did_win_vertically(player):
     """
     Check fo win vertically
     """
-    global run_game
-    if board[0] == board[3] == board[6] and board[0] != "-":
+    global BOARD
+    did_win = False
+    if ((BOARD[0] != "-" and BOARD[0] == BOARD[3] == BOARD[6]) or
+        (BOARD[1] != "-" and BOARD[1] == BOARD[4] == BOARD[7]) or
+        (BOARD[2] != "-" and BOARD[2] == BOARD[5] == BOARD[8])):
         print(f"Congratz {player}, You won the game! \n")
-        run_game = False
-    elif board[1] == board[4] == board[7] and board[1] != "-":
-        print(f"Congratz {player}, You won the game! \n")
-        run_game = False
-    elif board[2] == board[5] == board[8] and board[2] != "-":
-        print(f"Congratz {player}, You won the game! \n")
-        run_game = False
+        did_win =  True
+    return did_win
 
-def win_diagonally(board, player):
+def did_win_diagonally(player):
     """
     Check for win diagonally
     """
-    global run_game
-    if board[0] == board[4] == board[8] and board[0] != "-":
-        print(f"Congratz {player}, You won the game! \n")
-        run_game = False
-    elif board[2] == board[4] == board[6] and board[2] != "-":
+    global BOARD
+    did_win = False
+    if ((BOARD[0] != "-" and BOARD[0] == BOARD[4] == BOARD[8]) or
+        (BOARD[2] != "-" and BOARD[2] == BOARD[4] == BOARD[6])):
         print(f"Congratz {player}, You won the game! \n ")
-        run_game = False
+        did_win =  True
+    return did_win
 
-def check_tie(board):
+def check_tie():
     """
     Checks if game is tied
     """
-    global run_game
-    if "-" not in board:
+    global BOARD
+    is_tie = False
+    if "-" not in BOARD:
         print("It is a tie!\n")
-        run_game = False
+        is_tie = True
+    return is_tie
 
 
-def check_for_win_or_tie(board, player):
+def check_for_win_or_tie(player):
     """
     Runs functions to check if a player has won or tied the game
     """
-    win_horizontally(board,player)
-    win_vertically(board, player)
-    win_diagonally(board, player)
-    check_tie(BOARD)
+    if did_win_horizontally(player) or did_win_vertically(player) or did_win_diagonally(player) or check_tie():
+        return True
+
+    return False
             
 #Switch player
-def switch_player():
+def play_computer_chance(player_name):
     """
-    Switches  player 
+    Switches  player
     """
-    global current_player
-    if current_player == "X":
-        current_player = "O"
-    elif current_player == "O":
-        current_player = "X"
-    
+    global BOARD
+    random_position = get_random_position()
 
+    BOARD[random_position] = 'O'
+    print_board()
+    did_win_or_tie = check_for_win_or_tie('Computer')
+    if did_win_or_tie:
+        return ask_to_play_again()
+    else:
+        player_input(player_name)
 
+    return
 
-def main():
-    """
-    Function that gets player names and runs the game
-    """
-    player_one = input("Player one, please enter your name: \n")
-    player_two = input("Player two, please enter your name: \n")
-    while run_game:
-        player_input(BOARD, player_one)
-        if run_game:
-            player_input(BOARD, player_two)
-
-
-#Play again
-def play_again():
-    """
-    Asks player if they want to restart the game once a player has won or tied the previous round.
-    """
-    global run_game
-    print("Would you like to play again? \n")
-    answer = input("Enter Y or N: \n")
+def ask_to_play_again():
+    # Ask user if they want to play again, if Yes, then call start_game() or else exit
+    print("Would you like to play again?")
+    answer = input("Y/N: \n")
     if answer == "Y":
-        run_game = True
-        main()
-    
-main()
-play_again()
+        return start_game()
+    else: 
+        print("Thanks for playing, hope to see you soon again!")
+
+def start_game():
+    #Run game
+    global BOARD
+    player_name = input("Please enter your name: \n")
+    # player_two = input("Player two, please enter your name: \n")
+    BOARD = ["-", "-", "-", "-", "-", "-","-", "-", "-"]
+    player_input(player_name)
+
+
+start_game()
