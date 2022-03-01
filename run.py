@@ -138,7 +138,9 @@ def play_computer_chance(player_name):
     return
 
 def ask_to_play_again():
-    # Ask user if they want to play again, if Yes, then call start_game() or else exit
+    """
+    Ask user if they want to play again, if Yes, then call start_game() or else exit
+    """
     print("Would you like to play again?")
     answer = input("Y/N: \n")
     if answer == "Y":
@@ -147,12 +149,30 @@ def ask_to_play_again():
         print("Thanks for playing, hope to see you soon again!")
 
 def start_game():
-    #Run game
+    """
+    Starts the game!
+    """
     global BOARD
     player_name = input("Please enter your name: \n")
-    # player_two = input("Player two, please enter your name: \n")
     BOARD = ["-", "-", "-", "-", "-", "-","-", "-", "-"]
     player_input(player_name)
 
 
-start_game()
+def main():
+    """
+    Main function that shows welcome message, game instructions and
+    calls the start_game function
+    """
+    print("Welcome to Tic-Tac-Toe!\n")
+    print("The game is played on a grid that's 3 squares by 3 squares.\n")
+    print("You are X and the computers symbol is O. You and the computer will take turns putting your symbol in empty squares.\n")
+    print("The first player yo get 3 of their marks in a row (up, down, across or diagonally) is the winner.\n")
+    print("If all 9 squares are full, the game is tied.\n")
+    print("This is how the board looks and what number correlates with wich square")
+    print(REFERENCE_BOARD[0] + "|" + REFERENCE_BOARD[1] + "|" + REFERENCE_BOARD[2])
+    print(REFERENCE_BOARD[3] + "|" + REFERENCE_BOARD[4] + "|" + REFERENCE_BOARD[5])
+    print(REFERENCE_BOARD[6] + "|" + REFERENCE_BOARD[7] + "|" + REFERENCE_BOARD[8] +"\n")
+    start_game()
+
+
+main()
