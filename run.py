@@ -165,7 +165,12 @@ def welcome_msg():
     """
     Prints welcome message
     """
-    print("Welcome to Tic-Tac-Toe!\n")
+    print(" ╭━━━━╮   ╭━━━━╮     ╭━━━━╮")
+    print(" ┃╭╮╭╮┃   ┃╭╮╭╮┃     ┃╭╮╭╮┃")
+    print(" ╰╯┃┃┣╋━━╮╰╯┃┃┣┻━┳━━╮╰╯┃┃┣┻━┳━━╮")
+    print("   ┃┃┣┫╭┳┻━╮┃┃┃╭╮┃╭┳┻━╮┃┃┃╭╮┃┃━┫")
+    print("   ┃┃┃┃╰┻┳━╯┃┃┃╭╮┃╰┻┳━╯┃┃┃╰╯┃┃━┫")
+    print("   ╰╯╰┻━━╯  ╰╯╰╯╰┻━━╯  ╰╯╰━━┻━━╯ \n")
 
 
 def display_rules():
