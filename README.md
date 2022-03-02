@@ -2,10 +2,11 @@
 
 Tic-Tac-Toe is a python terminal game, which runs in the mock terminal on Heroku.
 
+![Welcome](images/welcome-msg-tic-tac-toe.png)
+
 Users can try to beat the computer in a game of Tic-Tac-Toe. The goal of this game is to place three of your own symbols in a row before the computer does or the board gets filled.
 
-[Here is the live link to my game](https://tic-tac-toe-ci.herokuapp.com/)
-![Welcome](images/welcome-tic-tac-toe.png)
+[Here is the live link to my project](https://tic-tac-toe-ci.herokuapp.com/)
 
 ## How to Play
 
@@ -20,9 +21,11 @@ The following rules apply to the Tic-Tac-Toe game:
 
 ## Features
 
-* The user is greeted to the game and the instructions from "How to play" is displayed.
+### Exsisting Features
+
+* The user is greeted to the game and the instructions from "How to play" are displayed.
     * A 3x3 board is created and the user is asked to enter their name.
-![Welcome msg](images/welcome-msg-tic-tac-toe.png)
+![Welcome msg and rules](images/rules-tic-tac-toe.png)
 
 * The user and computer takes turns to place their symbol on empty squares until there is a winner or the game is tied.
 ![Take turns](images/take-turns-tic-tac-toe.png)
@@ -30,6 +33,22 @@ The following rules apply to the Tic-Tac-Toe game:
 * Once the game is over the user is asked if they want to play again. Entering Y restarts the game and N exits the game.
 ![Game finished](images/game-finished-tic-tac-toe.png)
 
+### Future Features
+* Diffrent levels of difficulty 
+* Multiplayer instead of playing versus the computer
+
+## Languages Used
+
+* Python
+
+## Technology Used
+
+* GitPod was used for writing  the code, committing, and then pushing to GitHub.
+* Github was used to create and store the repository
+* Lucid Charts was used to create and map the logic used in this project
+* PEP8 online check was used to validate the python code.
+* Heroku was used to deploy the application.
+* Random witch is a built-in Python Library was used to generate a random integer between 0-8 using the randrange method
 
 ## Testing
 
@@ -59,14 +78,21 @@ I manually tested this project by doing the following:
 This project was deployed using Code institue's mock terminal for Heroku.
 
 I did the following to deploy my project: 
-* Create a new Heroku app
-* Under "Settings" tab
-    * Add config var (PORT, 8000)
-    * Added two buildpacks in this order: Python, NodeJS
-* Under "Deploy" tab
-    * Linked the Heroku app to the repository on GitHub
-    * Enable automatic deployment from "main" branch
-    * Click on "Deploy branch"
+
+On [Heroku](heroku.com) after creating account:
+
+1. “Create new app”
+2. Give the app a name and enter a region
+3. Click “Create app”
+4. Click on the “Settings” tab on your app dashboard
+5. Go to “Config Vars” and add everything you need for your project to work, in my case I only added KEY: PORT and VALUE: 8000
+6. Click “Add"
+7. Under “Config Vars” you will find “Buildpacks”
+    - Click “Add build pack” and first add Python then add nodeJS
+  8. Scroll up and click on the “Deploy” tab 
+9. Find Deployment method and connect to your repository, I connected to Github and once I was connected I could search for my Github repository. Once you’ve chosen your repository you can click “Connect”
+10. Then find “Manuel deploy and press “Deploy branch”
+11. Once the project has been deployed successfully you can click the View-button to see the program run in a terminal
 
 ## Credits
 * Code institute for the deployment terminal.
