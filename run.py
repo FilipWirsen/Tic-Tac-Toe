@@ -130,6 +130,7 @@ def play_computer_chance(player_name):
         return ask_to_play_again()
     else:
         reference_board()
+        print_board()
         player_input(player_name)
 
     return
