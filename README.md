@@ -18,6 +18,9 @@ The following rules apply to the Tic-Tac-Toe game:
 4. The first player to get 3 of their symbols in a row (up, down, across or diagonally) is the winner.
 5. If all 9 squares are full but no player has 3 symbols in a row the game ends in a tie.
 
+## Flowchart
+
+![Flowchart](images/lucidchart-tic-tac-toe.png)
 
 ## Features
 
