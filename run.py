@@ -177,7 +177,7 @@ def main():
     calls the start_game function
     """
     print("Welcome to Tic-Tac-Toe!\n")
-    print("The game is played on a grid that's 3 squares by 3 squares.\n")
+    print("This game is played on a grid that's 3 squares by 3 squares.\n")
     print("You are X and the computers symbol is O. You and the computer"
           " will take turns putting your symbol in empty squares.\n")
     print("The first player to get 3 of their symbol in a row"
