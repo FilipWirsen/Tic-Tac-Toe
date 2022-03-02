@@ -129,6 +129,7 @@ def play_computer_chance(player_name):
     if did_win_or_tie:
         return ask_to_play_again()
     else:
+        reference_board()
         player_input(player_name)
 
     return
@@ -140,10 +141,10 @@ def ask_to_play_again():
     if Yes, then call start_game() or else exit
     """
     print("Would you like to play again?")
-    answer = input("Y/N: \n")
-    if answer == "Y" or answer == "y":
+    answer = input("Y/N: \n").lower()
+    if answer == "y":
         return start_game()
-    elif answer == "N" or answer == "n":
+    elif answer == "n":
         print("Thanks for playing, hope to see you soon again!")
     else:
         print("Please enter Y or N \n")
@@ -165,6 +166,7 @@ def welcome_msg():
     """
     print("Welcome to Tic-Tac-Toe!\n")
 
+
 def display_rules():
     """
     Prints the game rules
@@ -178,11 +180,15 @@ def display_rules():
     print("This is how the board looks and"
           " what number correlates with wich square.\n")
 
+
 def reference_board():
-    print("Reference board")
-    print("1 | 2 | 3 |")
-    print("4 | 5 | 6 |")
-    print("7 | 8 | 9 |")
+    """
+    Prints reference board
+    """
+    print("Reference board: \n")
+    print("|1|2|3|")
+    print("|4|5|6|")
+    print("|7|8|9| \n")
 
 
 def main():
