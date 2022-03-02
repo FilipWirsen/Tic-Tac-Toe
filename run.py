@@ -160,6 +160,7 @@ def start_game():
     BOARD = ["-", "-", "-", "-", "-", "-", "-", "-", "-"]
     player_input(player_name)
 
+
 def welcome_msg():
     """
     Prints welcome message
