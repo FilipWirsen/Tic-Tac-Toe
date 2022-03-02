@@ -5,6 +5,7 @@ Tic-Tac-Toe is a python terminal game, which runs in the mock terminal on Heroku
 Users can try to beat the computer in a game of Tic-Tac-Toe. The goal of this game is to place three of your own symbols in a row before the computer does or the board gets filled.
 
 [Here is the live link to my game](https://tic-tac-toe-ci.herokuapp.com/)
+![Welcome](images/welcome-tic-tac-toe.png)
 
 ## How to Play
 
