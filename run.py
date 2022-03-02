@@ -152,10 +152,13 @@ def ask_to_play_again():
     """
     print("Would you like to play again?")
     answer = input("Y/N: \n")
-    if answer == "Y":
+    if answer == "Y" or answer == "y":
         return start_game()
-    else:
+    elif answer == "N" or answer == "n":
         print("Thanks for playing, hope to see you soon again!")
+    else:
+        print("Please enter Y or N \n")
+        ask_to_play_again()
 
 
 def start_game():

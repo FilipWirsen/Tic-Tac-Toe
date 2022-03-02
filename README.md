@@ -1,10 +1,12 @@
 # Tic-Tac-Toe
 
-Tic-Tac-Toe is a python terminal game, which runs on Heroku.
-Users can try to beat the computer by getting three of their symbols in a row before the computer.
+Tic-Tac-Toe is a python terminal game, which runs in the mock terminal on Heroku.
 
+Users can try to beat the computer in a game of Tic-Tac-Toe. The goal of this game is to place three of your own symbols in a row before the computer does or the board gets filled.
 
-## How to play
+[Here is the live link to my game](https://tic-tac-toe-ci.herokuapp.com/)
+
+## How to Play
 
 The following rules apply to the Tic-Tac-Toe game:
 
@@ -18,14 +20,35 @@ The following rules apply to the Tic-Tac-Toe game:
 ## Features
 
 * The user is greeted to the game and the instructions from "How to play" is displayed.
-    * The 3x3 board is created and the user is asked to enter their name.
+    * A 3x3 board is created and the user is asked to enter their name.
 ![Welcome msg](images/welcome-msg-tic-tac-toe.png)
 
 * The user and computer takes turns to place their symbol on a empty square until there is a winner or the game is tied.
 ![Take turns](images/take-turns-tic-tac-toe.png)
 
-* Once the game is over the user is asked if they want to play again. If they say yes the game restarts and else it exits.
+* Once the game is over the user is asked if they want to play again. Enter Y to restart the game and N to exit.
 ![Game finished](images/game-finished-tic-tac-toe.png)
+
+
+## Testing
+
+I manually tested this project by doing the following:
+ * Passed the code through a PEP8 linter and there are no errors. 
+ * Gave invalid inputs: invalid numbers, same number twice and strings when ints where expected.
+ * Tested the game in Gitpod terminal and my Heroku terminal.
+
+ 
+ # Bugs
+
+ ### Solved Bugs
+ * I got a bug where the computer always tried to place its symbol on the same square as the user did.
+    * I fixed this by adding a if statement: (if BOARD[random_index] == '-':). It makes the computer only return their number if the square is empty
+ *
+ *
+
+ ### Remaining Bugs
+ * I have not been able to find any remaining bugs.
+
 ## Creating the Heroku app
 
 When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
