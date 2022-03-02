@@ -1,13 +1,6 @@
 from random import randrange
 
-# Create board
-
-REFERENCE_BOARD = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-
-
 BOARD = ["-", "-", "-", "-", "-", "-", "-", "-", "-"]
-
-# print board
 
 
 def print_board():
@@ -30,7 +23,6 @@ def get_random_position():
         random_index = randrange(9)
         if BOARD[random_index] == '-':
             return random_index
-# Player input
 
 
 def player_input(player_name):
@@ -56,8 +48,6 @@ def player_input(player_name):
         except ValueError as e:
             print(f"You need to enter a number, {e} is not a number \n")
     return
-
-# Check for win or tie
 
 
 def did_win_horizontally(player):
@@ -123,7 +113,6 @@ def check_for_win_or_tie(player):
             check_tie()):
         return True
     return False
-# Switch player
 
 
 def play_computer_chance(player_name):
@@ -170,13 +159,16 @@ def start_game():
     BOARD = ["-", "-", "-", "-", "-", "-", "-", "-", "-"]
     player_input(player_name)
 
-
-def main():
+def welcome_msg():
     """
-    Main function that shows welcome message, game instructions and
-    calls the start_game function
+    Prints welcome message
     """
     print("Welcome to Tic-Tac-Toe!\n")
+
+def display_rules():
+    """
+    Prints the game rules
+    """
     print("This game is played on a grid that's 3 squares by 3 squares.\n")
     print("You are X and the computers symbol is O. You and the computer"
           " will take turns putting your symbol in empty squares.\n")
@@ -185,15 +177,22 @@ def main():
     print("If all 9 squares are full, the game is tied.\n")
     print("This is how the board looks and"
           " what number correlates with wich square.\n")
-    print(REFERENCE_BOARD[0] +
-          "|" + REFERENCE_BOARD[1] +
-          "|" + REFERENCE_BOARD[2])
-    print(REFERENCE_BOARD[3] +
-          "|" + REFERENCE_BOARD[4] +
-          "|" + REFERENCE_BOARD[5])
-    print(REFERENCE_BOARD[6] +
-          "|" + REFERENCE_BOARD[7] +
-          "|" + REFERENCE_BOARD[8] + "\n")
+
+def reference_board():
+    print("Reference board")
+    print("1 | 2 | 3 |")
+    print("4 | 5 | 6 |")
+    print("7 | 8 | 9 |")
+
+
+def main():
+    """
+    Main function that shows welcome message, game instructions and
+    calls the start_game function
+    """
+    welcome_msg()
+    display_rules()
+    reference_board()
     start_game()
 
 
